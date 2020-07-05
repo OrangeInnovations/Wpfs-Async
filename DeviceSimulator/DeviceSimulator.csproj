@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
@@ -63,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Models\DeviceSimulators.cs" />
+    <Compile Include="SendEventsCommand.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -76,6 +80,7 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\IAsyncCommand.cs" />
     <Compile Include="Commands\NotifyTaskCompletion.cs" />
+    <Compile Include="Converts\NullToVisibilityConverter.cs" />
     <Compile Include="Distributions\IDistribution.cs" />
     <Compile Include="Distributions\NormalDistribution.cs" />
     <Compile Include="Distributions\UniformDistribution.cs" />
@@ -85,6 +90,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CombinationMessageGenerator.cs" />
+    <Compile Include="Models\ErrorMessageGenerator.cs" />
+    <Compile Include="Models\ICombinationMessageGenerator.cs" />
+    <Compile Include="Models\IErrorMessageGenerator.cs" />
+    <Compile Include="Models\IMessageGenerator.cs" />
+    <Compile Include="Models\MessagesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -102,6 +113,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Data\DeviceIds.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -111,6 +125,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Generators\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

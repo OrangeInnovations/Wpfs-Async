@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace CloudConnection.Simulator.Commands
+namespace DeviceSimulator.Commands
 {
     public interface IAsyncCommand : ICommand
     {

@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace CloudConnection.Simulator.Commands
+namespace DeviceSimulator.Commands
 {
     public class AsyncCommand<TResult> : AsyncCommandBase, INotifyPropertyChanged
     {

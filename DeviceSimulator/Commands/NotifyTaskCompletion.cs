@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace CloudConnection.Simulator.Commands
+namespace DeviceSimulator.Commands
 {
     public sealed class NotifyTaskCompletion<TResult> : INotifyPropertyChanged
     {

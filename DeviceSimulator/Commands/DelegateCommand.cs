@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace CloudConnection.Simulator.Commands
+namespace DeviceSimulator.Commands
 {
     public sealed class DelegateCommand : ICommand
     {
