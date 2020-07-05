@@ -3,10 +3,65 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DeviceSimulator"
+        xmlns:local="clr-namespace:DeviceSimulator" xmlns:local1="clr-namespace:DeviceSimulator.Converts"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <local1:NullToVisibilityConverter x:Key="Converts.NullToVisibilityConverter"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <local:MainWindowViewModel></local:MainWindowViewModel>
+    </Window.DataContext>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="260" MinHeight="250">
+
+            </RowDefinition>
+            <RowDefinition Height="200" MinHeight="200">
+
+            </RowDefinition>
+            <RowDefinition Height="Auto" MinHeight="50">
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <Label x:Name="labelDeviceNumber" Content="Device number:" HorizontalAlignment="Left" Margin="38,9,0,0" VerticalAlignment="Top" Width="94" Height="26"/>
+        <TextBox x:Name="textBoxDeviceNumber" Text="{Binding DeviceNumber,StringFormat=N0}" HorizontalAlignment="Left" Height="23" Margin="234,9,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="labelLowBound" Content="Low bound (milliseconds):" HorizontalAlignment="Left" Margin="38,38,0,0" VerticalAlignment="Top" Height="26" Width="146"/>
+        <TextBox x:Name="textBoxLowBound" Text="{Binding LowBoundsMilliseconds}" HorizontalAlignment="Left" Height="22" Margin="234,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="labelUpperBound" Content="Upper bound (milliseconds):" HorizontalAlignment="Left" Margin="38,73,0,0" VerticalAlignment="Top" Height="24" Width="159"/>
+        <TextBox x:Name="textBoxUpperBound" Text="{Binding UpperBoundsMilliseconds}" HorizontalAlignment="Left" Height="21" Margin="234,82,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="labelNormalDistributionPercentages" Content="Normal Distribution cover (%)" HorizontalAlignment="Left" Margin="38,104,0,0" VerticalAlignment="Top" Height="26" Width="191"/>
+        <TextBox x:Name="textBoxNormalDistributionPercentages" Text="{Binding NormalDistributionPercentage}" HorizontalAlignment="Left" Height="23" Margin="234,111,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="labelPercentages" Content="Correct data rate percentages (%)" HorizontalAlignment="Left" Margin="38,137,0,0" VerticalAlignment="Top" Height="26" Width="191"/>
+        <TextBox x:Name="textBoxPercentages" Text="{Binding CorrectRatePercentage}" HorizontalAlignment="Left" Height="23" Margin="234,141,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="labelIP" Content="Udp Server Ip:" HorizontalAlignment="Left" Margin="38,168,0,0" VerticalAlignment="Top" Height="25" Width="94"/>
+        <TextBox x:Name="textBoxIP" Text="{Binding IpAddress}"  HorizontalAlignment="Left" Height="23" Margin="234,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="316"/>
+        <Label x:Name="labelPort" Content="Port:" HorizontalAlignment="Left" Margin="38,188,0,0" VerticalAlignment="Top" Height="27" Width="34"/>
+        <TextBox x:Name="textBoxPort" Text="{Binding UdpPort}" HorizontalAlignment="Left" Height="23" Margin="234,203,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="buttonStart" Command="{Binding StartSendingEvents}" Content="Start Send" HorizontalAlignment="Left" Margin="38,232,0,0" VerticalAlignment="Top" Width="79" Height="20"/>
+        <Button x:Name="buttonStop" Content="Cancel" Command="{Binding StartSendingEvents.CancelCommand}" HorizontalAlignment="Left" Margin="234,232,0,0" VerticalAlignment="Top" Width="75" Height="19"/>
+        <Label x:Name="labelCorrectNumber" Content="Correct data sent:" HorizontalAlignment="Left" Margin="38,11.667,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="101"/>
+        <TextBlock x:Name="textBlockCorrectNumber" Text="{Binding NumberOfCorrectMessages,StringFormat=N2}" HorizontalAlignment="Left" Margin="234,16.667,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" Height="16"/>
+
+        <Label x:Name="labelWrongNumber" Content="Wrong data sent:" HorizontalAlignment="Left" Margin="38,42.667,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="101"/>
+        <TextBlock x:Name="textBlockWrongNumber" Text="{Binding NumberOfErrorMessages,StringFormat=N2}" HorizontalAlignment="Left" Margin="234,47.667,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" Height="16"/>
+        <Label x:Name="labelTotalNumber" Content="Total data sent:" HorizontalAlignment="Left" Margin="38,71.667,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="101"/>
+        <TextBlock x:Name="textBlockTotalNumber" Text="{Binding NumberOfTotalMessages,StringFormat=N2}" HorizontalAlignment="Left" Margin="234,76.667,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" Height="16"/>
+
+        <Label x:Name="labelCurrentTime" Content="Current Time:" HorizontalAlignment="Left" Margin="38,108.667,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="101"/>
+        <TextBlock x:Name="textBlockCurrentTime" Text="{Binding CurrentTimeDisplay}" HorizontalAlignment="Left" Margin="234,108.667,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="199" Height="16"/>
+
+        <Label x:Name="labelSpendTime" Content="Spent Time:" HorizontalAlignment="Left" Margin="38,145.667,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="101"/>
+        <TextBlock x:Name="textBlockSpendTime" Text="{Binding TotalSendingTimeDisplay}" HorizontalAlignment="Left" Margin="234,145.667,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="199" Height="16"/>
+
+        <Grid Visibility="{Binding StartSendingEvents.Execution, Converter={StaticResource Converts.NullToVisibilityConverter}}"  
+              HorizontalAlignment="Left"  Grid.Row="2" VerticalAlignment="Top"  MinWidth="600" >
+            <TextBlock x:Name="TextBlockTip" Text="{Binding LabelText}" FontSize="16"  TextWrapping="Wrap" TextTrimming="WordEllipsis" LineStackingStrategy="BlockLineHeight"
+               Visibility="{Binding StartSendingEvents.Execution.IsNotCompleted, Converter={StaticResource BooleanToVisibilityConverter}}"
+               HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="38,10,0,0"  Foreground="Red" />
+        </Grid>
+
     </Grid>
 </Window>

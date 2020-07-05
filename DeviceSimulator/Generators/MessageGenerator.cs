@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -21,27 +22,25 @@ namespace DeviceSimulator.Generators
 
         public List<byte[]> GenerateMessages(List<string> deviceIds, int numOfEvt)
         {
-            List<byte[]> messages = new List<byte[]>();
-
-            //foreach (string deviceId in deviceIds)
-            //{
-            //    for (var i = 0; i < numOfEvt; i++)
-            //    {
-            //        byte[] tp = GenerateRandomPacket(deviceId);
-            //        messages.Add(tp);
-            //    }
-            //}
+            //List<byte[]> messages = new List<byte[]>();
+            ConcurrentBag<byte[]> messages = new ConcurrentBag<byte[]>();
 
             Parallel.ForEach(deviceIds, deviceId =>
             {
-                for (var i = 0; i < numOfEvt; i++)
+                Parallel.For(0, numOfEvt, i =>
                 {
                     byte[] tp = GenerateRandomPacket(deviceId);
                     messages.Add(tp);
-                }
+                });
+
+                //for (var i = 0; i < numOfEvt; i++)
+                //{
+                //    byte[] tp = GenerateRandomPacket(deviceId);
+                //    messages.Add(tp);
+                //}
             });
 
-            return messages;
+            return messages.ToList();
         }
 
         private byte[] GenerateRandomPacket(string deviceId)
