@@ -1,5 +1,6 @@
 ﻿using DeviceSimulator.Commands;
 using DeviceSimulator.Distributions;
+using DeviceSimulator.Generators;
 using DeviceSimulator.Models;
 using System;
 using System.Collections.Generic;

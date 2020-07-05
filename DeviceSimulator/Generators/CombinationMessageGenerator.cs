@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using System.Deployment.Application;
+using DeviceSimulator.Models;
 
-namespace DeviceSimulator.Models
+namespace DeviceSimulator.Generators
 {
     public class CombinationMessageGenerator : ICombinationMessageGenerator
     {
@@ -54,7 +55,6 @@ namespace DeviceSimulator.Models
             List<byte[]> list = new List<byte[]>();
             if (numOfCorrectMsg > 0)
             {
-                //List<byte[]> correctList = _messageGenerator.GenerateMessages(numOfCorrectMsg);
                 List<byte[]> correctList = GenerateCorrectMessageBytesList(_seedDeviceIdList, numOfCorrectMsg);
                 list.AddRange(correctList);
             }
@@ -68,7 +68,7 @@ namespace DeviceSimulator.Models
             return list;
         }
 
-        private List<byte[]> GenerateCorrectMessageBytesList(List<String> pickDeviceList, int totalCorrectMsg)
+        private List<byte[]> GenerateCorrectMessageBytesList(List<string> pickDeviceList, int totalCorrectMsg)
         {
             int deviceCount = pickDeviceList.Count;
 
@@ -83,7 +83,7 @@ namespace DeviceSimulator.Models
             return orderedList.Take(totalCorrectMsg).ToList();
         }
 
-        private List<String> GenerateDeviceIdList(int numOfIds = 1000)
+        private List<string> GenerateDeviceIdList(int numOfIds = 1000)
         {
             try
             {

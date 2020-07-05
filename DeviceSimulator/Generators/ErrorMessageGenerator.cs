@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeviceSimulator.Models
+namespace DeviceSimulator.Generators
 {
     public class ErrorMessageGenerator : IErrorMessageGenerator
     {
@@ -13,7 +13,7 @@ namespace DeviceSimulator.Models
             List<byte[]> list = new List<byte[]>();
             for (int i = 0; i < numofErrorMessage; i++)
             {
-                Byte[] sendBytes = Encoding.ASCII.GetBytes(Guid.NewGuid().ToString());
+                byte[] sendBytes = Encoding.ASCII.GetBytes(Guid.NewGuid().ToString());
                 list.Add(sendBytes);
             }
             return list;

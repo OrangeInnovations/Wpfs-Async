@@ -64,6 +64,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Generators\MessageFormat.cs" />
+    <Compile Include="Generators\MessageGenerator.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Models\DeviceSimulators.cs" />
     <Compile Include="SendEventsCommand.cs" />
@@ -90,11 +92,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\CombinationMessageGenerator.cs" />
-    <Compile Include="Models\ErrorMessageGenerator.cs" />
-    <Compile Include="Models\ICombinationMessageGenerator.cs" />
-    <Compile Include="Models\IErrorMessageGenerator.cs" />
-    <Compile Include="Models\IMessageGenerator.cs" />
+    <Compile Include="Generators\CombinationMessageGenerator.cs" />
+    <Compile Include="Generators\ErrorMessageGenerator.cs" />
+    <Compile Include="Generators\ICombinationMessageGenerator.cs" />
+    <Compile Include="Generators\IErrorMessageGenerator.cs" />
+    <Compile Include="Generators\IMessageGenerator.cs" />
     <Compile Include="Models\MessagesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -125,8 +127,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Generators\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
